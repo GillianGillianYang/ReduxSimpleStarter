@@ -1,10 +1,11 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom'; //lib
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
-const API_KEY = 'AIzaSyCFqD9M9nYqPNkTgRCAvTm8M5OBHnBsL-0' ;
+const API_KEY = 'AIzaSyCFqD9M9nYqPNkTgRCAvTm8M5OBHnBsL-0';
 
 
 
@@ -14,23 +15,28 @@ const API_KEY = 'AIzaSyCFqD9M9nYqPNkTgRCAvTm8M5OBHnBsL-0' ;
 //Create new component . produce some HTML
 //class :
 
-class App extends  Component{
-    constructor(props){
+class App extends Component {
+    constructor(props) {
         super(props);
 
-        this.state = {videos:[]};
+        this.state = { videos: [] };
 
-        YTSearch({key:API_KEY, term :'surfboards' } , (videos) => {
-            this.setState({videos}); // {videos: videos}
+        YTSearch({ key: API_KEY, term: 'surfboards' }, (videos) => {
+            this.setState({ videos }); // {videos: videos}
         });
 
     }
-    render(){
-        return (
-            <div>
-                <SearchBar />
-                <VideoList videos={this.state.videos} />
-            </div>
+    render() {
+        return ( <
+            div >
+            <
+            SearchBar / >
+            <
+            VideoDetail video = { this.state.videos[0] }
+            /> <
+            VideoList videos = { this.state.videos }
+            /> < /
+            div >
         );
     };
 
@@ -53,12 +59,12 @@ class App extends  Component{
 
 // class ; not instance 
 
-    // const App = function () {
-    //     return React.createElement(
-    //         "div",
-    //         null,
-    //         "Hi! Gina"
-    //     );
-    // };
+// const App = function () {
+//     return React.createElement(
+//         "div",
+//         null,
+//         "Hi! Gina"
+//     );
+// };
 //take this componet's generated HTML and put it on the page(in the DOM)
-ReactDOM.render(<App />, document.querySelector('.container'));
+ReactDOM.render( < App / > , document.querySelector('.container'));
