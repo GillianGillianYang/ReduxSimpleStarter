@@ -24,7 +24,12 @@ class App extends Component {
             selectedVideo: null
         };
 
-        YTSearch({ key: API_KEY, term: 'John Galliano' }, (videos) => {
+        //why need 'this'??
+        this.videoSearch('John Galliano');
+    }
+
+    videoSearch(term) {
+        YTSearch({ key: API_KEY, term: term }, (videos) => {
             this.setState({
                 videos: videos,
                 selectedVideo: videos[0]
@@ -33,12 +38,12 @@ class App extends Component {
         });
 
     }
+
     render() {
-        return ( <
-            div >
+        return ( < div >
             <
-            SearchBar / >
-            <
+            SearchBar onSearchTermChange = { term => this.videoSearch(term) }
+            /> <
             VideoDetail video = { this.state.selectedVideo }
             /> <
             VideoList onVideoSelect = {
@@ -49,7 +54,7 @@ class App extends Component {
                 }
             }
             videos = { this.state.videos }
-            /> < /
+            />  < /
             div >
         );
     };
